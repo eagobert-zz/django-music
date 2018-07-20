@@ -1,0 +1,9 @@
+<h1>Artist Details</h1>
+<h4>Artist's Name: {{ artist.artist_name }}</h4>
+<h4>Year Established: {{ artist.year_est }}</h4>
+<h4>Song List:</h4>
+<ul>
+{% for song in artist.song_set.all %}
+    <li><a href="/history/{{ song.id }}/">{{ song.title }}</a></li>
+{% endfor %}
+</ul>
