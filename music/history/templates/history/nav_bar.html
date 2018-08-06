@@ -1,0 +1,31 @@
+<nav>
+  {% if nav_location != 'artists' %}
+    <form action="/artists" method='get'>
+      <input type="submit" value="View My Artists">
+    </form>
+  {% endif %}
+
+  {% if nav_location != 'albums' %}
+    <form action="/albums" method='get'>
+      <input type="submit" value="View My Albums">
+    </form>
+  {% endif %}
+
+  {% if nav_location != 'songs' %}
+    <form action="/history/songs" method='get'>
+      <input type="submit" value="View My Songs">
+    </form>
+  {% endif %}
+
+  {% if nav_location != 'home' %}
+    <form action="/" method='get'>
+      <input type="submit" value="Home">
+    </form>
+  {% endif %}
+
+  {% if nav_location != 'add_artist' %}
+    <form action="/history/artists/add" method='get'>
+      <input type="submit" value="Add Artist">
+    </form>
+  {% endif %}
+</nav>

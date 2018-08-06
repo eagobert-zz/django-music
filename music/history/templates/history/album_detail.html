@@ -1,0 +1,14 @@
+{% extends 'history/index.html' %}
+
+{% block content %}
+<h1>Album Details</h1>
+<h4>Album Name: {{ album.title}}</h4>
+<h4>Album Label: {{ album.label }}</h4>
+
+<h4>Song On The Album:</h4>
+<ul>
+{% for song in album.song_set.all %}
+    <li>{{ song.title }}</li>
+{% endfor %}
+</ul>
+{% endblock %}

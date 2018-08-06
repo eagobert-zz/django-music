@@ -16,10 +16,19 @@ class Genre(models.Model):
     def __str__(self):
         return self.genre_name
 
+class Album(models.Model):
+    """ Model represents an artist's album """
+    title = models.CharField(max_length=30)
+    label = models.CharField(max_length=30)
+    songs = models.ManyToManyField('Song', through='AlbumSongs')
+
+    def __str__(self):
+        return self.title
+        
 class Song(models.Model):
     """ Model represents an artist's song """
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
-    genre = models.ForeignKey(Genre, default="", on_delete=models.CASCADE)
+    genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
     title = models.CharField(max_length=30)
     song_length = models.IntegerField(default=0)
     release_date = models.DateField(auto_now=False, auto_now_add=False)
@@ -27,17 +36,6 @@ class Song(models.Model):
     def __str__(self):
         return self.title
 
-class Album(models.Model):
-    """ Model represents an artist's album """
-    title = models.CharField(max_length=30)
-    label = models.CharField(max_length=30)
-    songs = models.ManyToManyField(Song, through='AlbumSongs')
-
-    def __str__(self):
-        return self.title
-
-
 class AlbumSongs(models.Model):
-    """ Model represents songs on an album """
-    album = models.ForeignKey(Album, on_delete= models.CASCADE)
-    songs = models.ForeignKey(Song, on_delete= models.CASCADE)
+    album = models.ForeignKey(Album, on_delete = models.CASCADE)
+    song = models.ForeignKey(Song, on_delete= models.CASCADE)
